@@ -19,15 +19,20 @@ app.use(jsonParser);
 
 app.use("/blog-posts", blogRouter);
 
-console.log('is any of this working?');
+
+BlogPosts.create("og blog post 1", "some content 1", "hemingway");
+BlogPosts.create("og blog post 2", "some content 2", "Vonnegut");
+BlogPosts.create("og blog post 3", "some content 3", "bukowski");
+
+
 
 blogRouter.get("/", (req, res) => {
-  console.log('heard ya!');
+  // console.log('heard ya!');
   res.json(BlogPosts.get());
 });
 
 blogRouter.post("/", (req, res)=> {
-  // BlogPosts.create(req.body.title, req.body.content, req.body.author, req.body.publishDate);
+  BlogPosts.create(req.body.title, req.body.content, req.body.author, req.body.publishDate);
   console.log(req);
   res.status(201).end();
 });
